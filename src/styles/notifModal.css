@@ -1,0 +1,16 @@
+.bell-container {
+    background-color: aqua;
+    max-height: 3rem;
+    overflow-y: scroll;
+    padding: 2rem;
+}
+
+.bell-notif{
+    margin: 1rem;
+    max-width: 100%;
+    background-color: red;
+}
+
+.bell-notif.read {
+    background-color: yellow;
+  }

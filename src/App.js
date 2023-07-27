@@ -1,6 +1,11 @@
+import AppBar from "./component/AppBar";
+
 const App = () => {
+
   return (
-    <div>hello</div>
+  <div>
+    <AppBar/>
+  </div>
   )
 }
 
