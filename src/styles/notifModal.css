@@ -1,16 +1,54 @@
 .bell-container {
-    background-color: aqua;
-    max-height: 3rem;
+    background: #1e1e26;
+    color: #c1c1c1;
+    max-height: 30rem;
     overflow-y: scroll;
-    padding: 2rem;
+    /* padding: 2rem; */
+    /* max-width: 600px; */
+    display: flex;
+    flex-direction: column;
 }
 
-.bell-notif{
+.title {
+    color: #c1c1c1;
+}
+
+.bell-notif {
+    /* min-width: 60%; */
     margin: 1rem;
     max-width: 100%;
-    background-color: red;
+    /* background-color: red; */
 }
 
+.individual-notif {
+    background: #292933;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.1rem;
+    margin: 0.5rem 1rem;
+    /* border: 1px solid red; */
+}
+
+
 .bell-notif.read {
-    background-color: yellow;
-  }
+    /* background-color: yellow; */
+    color: #5c5c6c;
+}
+
+.btn-container {
+    display: flex;
+    max-height: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-btn {
+    margin: 0 0.5rem;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem 0;
+}
