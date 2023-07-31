@@ -1,53 +1,53 @@
-// import React, { useState } from 'react'
-// import { BsBell } from 'react-icons/bs'
-// import NotificationModal from './NotificationModal'
-// import "../styles/appBar.css"
-// const AppBar = () => {
-
-//     const [showModal, setShowModal] = useState(false);
-
-//     const handleShowNotification = () => {
-//         setShowModal((prev) => !prev);
-//     }
-//     console.log(showModal);
-//     return (
-//         <div >
-//             <div className='app-bar-container'>
-//                 <span onClick={handleShowNotification} className='bell-icon'><BsBell /></span>
-//             </div>
-//             <div className='modal-div'>
-//                 {showModal && (
-//                     <NotificationModal />
-//                 )}
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default AppBar
-
-
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BsBell } from 'react-icons/bs';
 import NotificationModal from './NotificationModal';
 import '../styles/appBar.css';
+import { useNotification } from '../context/NotificationContext';
 
 const AppBar = () => {
     const [showModal, setShowModal] = useState(false);
+    const modalRef = useRef(null);
 
-    const handleShowNotification = () => {
+
+    const { fetchNotifications, setActive, active } = useNotification();
+
+    const handleShowNotification = async (e) => {
+        e.stopPropagation();
         setShowModal((prev) => !prev);
+        await fetchNotifications();
+        setActive(false);
     };
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
+    useEffect(() => {
+        const handleDocumentClick = e => {
+            if (modalRef.current && !modalRef.current.contains(e.target)) {
+                handleCloseModal();
+            }
+        }
+        if (showModal) {
+            document.addEventListener('click', handleDocumentClick);
+        }
+        return () => {
+            document.removeEventListener('click', handleDocumentClick)
+        }
+    }, [showModal])
+
+console.log("modal State",showModal);
 
     return (
         <div>
             <div className='app-bar-container'>
                 <span onClick={handleShowNotification} className='bell-icon'>
                     <BsBell />
+                    <div className={`${active ? `active` : ''}`}>
+                        <span className='dot'></span>
+                    </div>
                 </span>
             </div>
-            <div className={`modal-div ${showModal ? 'modal-show' : ''}`}>
-                {showModal && (<NotificationModal />)}
+            <div className={`modal-div ${showModal ? 'modal-show' : ''}`} ref={modalRef}>
+                {showModal && (<NotificationModal  />)}
             </div>
         </div>
     );

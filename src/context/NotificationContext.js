@@ -1,52 +1,41 @@
-import { useContext, createContext, useEffect, useState, useRef } from "react"
+import { useContext, createContext, useEffect, useState, useRef, useCallback } from "react"
 import { HeadlessService } from '@novu/headless';
 
 const NotificationContext = createContext();
 
 const NotificationProvider = ({ children }) => {
-    // const [initializeHeadless,setInitializeHeadless]=useState(null);
+
     const [notifications, setNotifications] = useState([]);
-    // const [unseenCount, setUnseenCount] = useState(0);
-    // const [unreadCount, setUnreadCount] = useState(0);
+    const [active, setActive] = useState(false);
 
     const headlessServiceRef = useRef(null);
     const [pageNum, setPageNum] = useState(0);
 
+    const fetchNotifications = useCallback(() => {
+        const headlessService = headlessServiceRef.current;
+        if (headlessService) {
+            headlessService.fetchNotifications({
+                listener: ({ data, error, isError, isFetching, isLoading, status }) => {
+                    console.log({ data, error, isError, isFetching, isLoading, status });
+                    // Handle the state of the fetching process and errors here.
+                },
+                onSuccess: (response) => {
+
+                    // Handle the fetched notifications here.
+                    console.log("response from context", response);
+                    setNotifications(response.data); // Store notifications in the state
+                },
+                page: pageNum, // page number to be fetched
+            });
+        }
+    }, [pageNum])
+
+
     useEffect(() => {
-        // Connect to the real-time messaging system or WebSocket server
-        // const socket = new WebSocket('ws://localhost:3000/');
-
-        // Add event listeners to handle real-time updates
-        // socket.addEventListener('message', (event) => {
-        //     const data = JSON.parse(event.data);
-        //     if (data.type === 'notification') {
-        //     handleRealTimeNotification(data.notification);
-        //     } else if (data.type === 'unseenCount') {
-        //     handleUnseenCountChange(data.count);
-        //     } else if (data.type === 'unreadCount') {
-        //     handleUnreadCountChange(data.count);
-        //     }
-        // });
-
-        // Function to handle real-time updates for new notifications
-        // const handleRealTimeNotification = (notification) => {
-        //     setNotifications((prevNotifications) => [...prevNotifications, notification]);
-        //   };
-
-        //   // Function to handle real-time updates for unseen count
-        //   const handleUnseenCountChange = (count) => {
-        //     setUnseenCount(count);
-        //   };
-
-        //   // Function to handle real-time updates for unread count
-        //   const handleUnreadCountChange = (count) => {
-        //     setUnreadCount(count);
-        //   };
 
         const headlessService = new HeadlessService({
             applicationIdentifier: 'SWMw97ec1ZNA',
             subscriberId: '12345',
-            // subscriberHash: '66fb7cd276fe65be995c1d8e30d87803e4f9a3f3311db6d90f524c5983a522b5'
         });
 
         headlessService.initializeSession({
@@ -58,32 +47,7 @@ const NotificationProvider = ({ children }) => {
                 // setInitializeHeadless(session);
                 headlessServiceRef.current = headlessService;
                 fetchNotifications();
-                // headlessService.fetchUserPreferences({
-                //     listener: (result) => {
-                //       console.log(result);
-                //     },
-                //     onSuccess: (settings) => {
-                //       console.log("user preference",settings);
-                //     },
-                //     onError: (error) => {
-                //       console.error(error);
-                //     },
-                //   });
 
-                // headlessService.fetchNotifications({
-                //     listener: ({ data, error, isError, isFetching, isLoading, status }) => {
-                //         console.log({ data, error, isError, isFetching, isLoading, status });
-                //         // Handle the state of the fetching process and errors here.
-                //     },
-                //     onSuccess: (response) => {
-                //         //   console.log(response.data, response.page, response.totalCount, response.pageSize);
-                //         // Handle the fetched notifications here.
-                //         console.log("response", response);
-                //         setNotifications(response.data); // Store notifications in the state
-                //     },
-                //     // page: pageNum, // page number to be fetched
-                //     page: 1
-                // });
 
             },
             onError: (error) => {
@@ -91,7 +55,7 @@ const NotificationProvider = ({ children }) => {
             },
         })
 
-    }, [])
+    }, [fetchNotifications])
 
     // Function to mark notifications as read
     const markNotificationsAsRead = (messageIds) => {
@@ -115,16 +79,19 @@ const NotificationProvider = ({ children }) => {
 
     };
 
-    const deleteNotification = (messageIds) => {
-        if (!Array.isArray(messageIds)) {
-            messageIds = [messageIds];
-        }
+    const deleteNotification = (messageId) => {
+        // if (!Array.isArray(messageIds)) {
+        //     messageIds = [messageIds];
+        // }
         const headlessService = headlessServiceRef.current;
         if (headlessService) {
             headlessService.removeNotification({
-                messageId: messageIds,
+                messageId: messageId,
                 listener: function (result) {
-                    console.log(result);
+                    console.log('deleteeee', result);
+                    setNotifications((prevNotifications) =>
+                        prevNotifications.filter((notification) => notification.id !== messageId)
+                    );
                 },
                 onSuccess: function (message) {
                     console.log(message);
@@ -154,28 +121,10 @@ const NotificationProvider = ({ children }) => {
             feedId: feedId, // Pass the feed ID here, it can be an array or a single ID
         });
     };
-    const fetchNotifications = () => {
-        const headlessService = headlessServiceRef.current;
-        if (headlessService) {
-            headlessService.fetchNotifications({
-                listener: ({ data, error, isError, isFetching, isLoading, status }) => {
-                    console.log({ data, error, isError, isFetching, isLoading, status });
-                    // Handle the state of the fetching process and errors here.
-                },
-                onSuccess: (response) => {
-                    //   console.log(response.data, response.page, response.totalCount, response.pageSize);
-                    // Handle the fetched notifications here.
-                    console.log("response", response);
-                    setNotifications(response.data); // Store notifications in the state
-                },
-                // page: pageNum, // page number to be fetched
-                page: pageNum, // page number to be fetched
-            });
-        }
-    }
+
 
     return (
-        <NotificationContext.Provider value={{ notifications, markNotificationsAsRead, markAllMessagesAsRead, deleteNotification, pageNum, setPageNum, fetchNotifications }}>
+        <NotificationContext.Provider value={{ notifications, markNotificationsAsRead, markAllMessagesAsRead, deleteNotification, pageNum, setPageNum, fetchNotifications, active, setActive }}>
             {children}
         </NotificationContext.Provider>
     )

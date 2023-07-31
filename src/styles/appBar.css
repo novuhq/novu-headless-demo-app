@@ -45,3 +45,14 @@
     min-width: 600px;
     max-width: 600px;
 }
+
+.active {
+    height: 7px;
+    border-radius: 50%;
+    width: 7px;
+    background: red;
+    border: 1px solid white;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+}

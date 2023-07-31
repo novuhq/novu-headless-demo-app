@@ -4,10 +4,13 @@ import "../styles/notifModal.css"
 const NotificationModal = () => {
 
     const { notifications, markNotificationsAsRead, markAllMessagesAsRead, deleteNotification, setPageNum, pageNum, fetchNotifications } = useNotification();
-    // console.log("notif", notifications)
 
     const handleNotificationRead = (notificationId) => {
         markNotificationsAsRead(notificationId);
+    }
+
+    const handleNotificationDelete = (notificationId) => {
+        deleteNotification(notificationId)
     }
 
     const handleMarkAllAsRead = () => {
@@ -21,6 +24,9 @@ const NotificationModal = () => {
         setPageNum((prv) => prv + 1)
 
     }
+
+
+
     useEffect(() => {
         fetchNotifications();
     }, [pageNum, fetchNotifications])
@@ -45,7 +51,7 @@ const NotificationModal = () => {
                             {!not?.read && (
                                 <button onClick={() => handleNotificationRead(not?.id)} className='read-btn'>Read</button>
                             )}
-                            <button onClick={() => deleteNotification(not?.id)} className='delete-btn'>Delete</button>
+                            <button onClick={() => handleNotificationDelete(not?.id)} className='delete-btn'>Delete</button>
                         </div>
                     </>
                 </div>
