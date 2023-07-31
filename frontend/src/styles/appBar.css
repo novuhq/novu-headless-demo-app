@@ -1,0 +1,26 @@
+.app-bar-container {
+    position: relative;
+    margin-top: -1.2rem;
+}
+
+.bell-icon {
+    padding-right: 1.6rem;
+    z-index: 10;
+}
+
+.modal-div {
+    position: absolute;
+    top: 16rem;
+    right: 21rem;
+}
+
+.active {
+    height: 7px;
+    border-radius: 50%;
+    width: 7px;
+    /* background: red; */
+    border: 1px solid white;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+}

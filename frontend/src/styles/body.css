@@ -1,0 +1,14 @@
+.input-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.input {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+}
+
+.form-btn {
+    height: 1.8rem;
+}

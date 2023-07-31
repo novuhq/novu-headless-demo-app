@@ -1,0 +1,112 @@
+.bell-container {
+    background: #1e1e26;
+    color: #c1c1c1;
+    max-height: 30rem;
+    overflow-y: scroll;
+    /* padding: 2rem; */
+    /* max-width: 600px; */
+    /* display: flex; */
+    /* flex-direction: column; */
+
+    /* z-index: 9; */
+
+    min-width: 520px;
+    max-width: 520px;
+}
+
+.title {
+    color: #c1c1c1;
+}
+
+.bell-notif {
+    /* min-width: 60%; */
+    margin: 1rem;
+    max-width: 100%;
+    /* background-color: red; */
+}
+
+.individual-notif {
+    background: #292933;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.1rem;
+    margin: 0.5rem 1rem;
+    /* border: 1px solid red; */
+}
+
+
+.bell-notif.read {
+    /* background-color: yellow; */
+    color: #5c5c6c;
+}
+
+.btn-container {
+    /* background: blue; */
+    display: flex;
+    max-height: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-btn {
+    margin: 0 0.5rem;
+}
+
+.bell-container>.heading {
+    display: flex;
+    /* background: red; */
+    justify-content: space-between;
+    /* width: 100%; */
+    /* padding: 1rem; */
+    /* margin: 1rem 0; */
+}
+
+.title {
+    margin: 0 2rem;
+}
+
+.bell-container .control-btn {
+    display: flex;
+    /* background: yellow; */
+}
+
+.modal-btn {
+    margin: 0 0.4rem;
+}
+
+.all-read {
+    min-width: 120px;
+}
+
+.title-btn {
+    background: #292933;
+    color: rgb(154, 154, 154);
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.title-btn:hover {
+    background: #414151;
+}
+
+.title-btn:active {
+    background: #3a3a4a;
+}
+
+.classic-btn {
+    background: #1e1e26;
+    /* color: #828299; */
+    color: rgb(154, 154, 154);
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.classic-btn:hover {
+    background: #434354;
+}
+
+.classic-btn:active {
+    background: #3a3a4a;
+}

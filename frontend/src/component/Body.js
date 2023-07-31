@@ -20,9 +20,10 @@ const Body = () => {
     console.log('stateeeeeee', active);
     return (
         <div className='body-container'>
-            <form onSubmit={onSubmitHandler}>
-                <input className="input" value={description} onChange={onChangeHandler} />
-                <button>Send</button>
+            <p>Enter notification text</p>
+            <form onSubmit={onSubmitHandler} className="input-form">
+                <input className="input" value={description} onChange={onChangeHandler} placeholder="Enter notification text" />
+                <button className="form-btn">Send</button>
             </form>
         </div>
     )
