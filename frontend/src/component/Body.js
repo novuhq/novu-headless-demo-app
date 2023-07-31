@@ -9,7 +9,7 @@ const Body = () => {
     const { active, setActive } = useNotification();
     const onSubmitHandler = async e => {
         e.preventDefault()
-        await axios.post('http://localhost:3000/api/v1/create-sub', { description })
+        await axios.post('https://headless-backend-qx89.onrender.com/api/v1/create-sub', { description })
 
         setDescription('')
         setActive(true)
