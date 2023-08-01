@@ -19,6 +19,7 @@ To run this app locally, you just need to:
 2. Install all the required packages for frontend as well as backend using `npm install`.
 3. Supply your `NOVU_API_KEY` and `SUSBSCRIBER_ID`. You can obtain both of them from the settings menu in [Novu's web dashboard](https://web.novu.co/settings).
 4. In the backend, you'll need to create a subscriber first before sending notifications to that subscriber. It has been done in the `novu.js` file in the `novu` directory in backend. 
+5. To run both the backend as well as the frontend, navigate to the respective directory by using `cd frontend` or `cd backend` and run `npm start` in the root of the directory.
 
 ## APIs consumed:
 In this demo app, the following APIs have been consumed:
