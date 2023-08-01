@@ -1,70 +1,40 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Headless Demo App
 
-## Available Scripts
+This is a demo app that is built using [Novu's headless notification center](https://docs.novu.co/notification-center/headless/headless-service/).
 
-In the project directory, you can run:
+It showcases some of the features available. For a full reference of all the features available, please see [this API reference](https://docs.novu.co/notification-center/headless/api-reference/).
+## Demo
 
-### `npm start`
+![gif to showcase Headless Demo app](https://res.cloudinary.com/dxc6bnman/image/upload/v1690895916/guides/output_htwncc.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Run locally:
+This repo has two parts:
+- frontend, and
+- backend
 
-### `npm test`
+To run this app locally, you just need to:
+1. Clone this repo.
+2. Install all the required packages for frontend as well as backend using `npm install`.
+3. Supply your `NOVU_API_KEY` and `SUSBSCRIBER_ID`. You can obtain both of them from the settings menu in [Novu's web dashboard](https://web.novu.co/settings).
+4. In the backend, you'll need to create a subscriber first before sending notifications to that subscriber. It has been done in the `novu.js` file in the `novu` directory in backend. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## APIs consumed:
+In this demo app, the following APIs have been consumed:
 
-### `npm run build`
+- **initializeSession**: Like the name suggests, this API initialises the session. This is a must before one can use any other API listed in [this API reference](https://docs.novu.co/notification-center/headless/api-reference/).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- fetchNotifications: This API fetches all the notification for a subscriber. This runs when the notification bell is clicked on the UI.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- markNotificationsAsRead: This API marks a notification as read. This is essential to differentiate the read and unread notifications on the UI. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- removeNotification: This API deletes the notification from the list of notifications sent to the subscriber. If a subscriber has many notifications and one is deleted, then that notifications vanishes from their UI and the remaining notifications are shown.
 
-### `npm run eject`
+- markNotificationsAsRead: This is quite straight-forward. This just marks all the notifications as 'read' for a subscriber. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+--- 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Note: 
+The above listed APIs are just some of the many available with the Novu headless notification center. You can check the full list [here](https://docs.novu.co/notification-center/headless/api-reference/).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
