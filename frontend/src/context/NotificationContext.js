@@ -89,9 +89,9 @@ const NotificationProvider = ({ children }) => {
                 messageId: messageId,
                 listener: function (result) {
                     console.log('deleteeee', result);
-                    setNotifications((prevNotifications) =>
-                        prevNotifications.filter((notification) => notification.id !== messageId)
-                    );
+                    // setNotifications((prevNotifications) =>
+                    //     prevNotifications.filter((notification) => notification.id !== messageId)
+                    // );
                 },
                 onSuccess: function (message) {
                     console.log(message);

@@ -10,6 +10,13 @@ const NotificationModal = () => {
     }
 
     const handleNotificationDelete = (notificationId) => {
+
+
+        let newClass = document.getElementById(`${notificationId}`);
+        console.log(newClass);
+        // newClass.style.backgroundColor = 'red';
+        newClass.style.display = 'none';
+
         deleteNotification(notificationId)
     }
 
@@ -24,7 +31,6 @@ const NotificationModal = () => {
         setPageNum((prv) => prv + 1)
 
     }
-
 
 
     useEffect(() => {
@@ -47,7 +53,7 @@ const NotificationModal = () => {
             </div>
             <div>
                 {notifications.map(not => (
-                    <div key={not.id} className='individual-notif'>
+                    <div key={not.id} className={`individual-notif`} id={`${not.id}`}>
                         <>
                             <span className={`bell-notif ${not.read ? 'read' : ''}`}>
                                 {not?.payload?.description}
