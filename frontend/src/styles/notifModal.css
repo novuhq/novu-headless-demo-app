@@ -3,13 +3,6 @@
     color: #c1c1c1;
     max-height: 30rem;
     overflow-y: scroll;
-    /* padding: 2rem; */
-    /* max-width: 600px; */
-    /* display: flex; */
-    /* flex-direction: column; */
-
-    /* z-index: 9; */
-
     min-width: 520px;
     max-width: 520px;
 }
@@ -19,10 +12,8 @@
 }
 
 .bell-notif {
-    /* min-width: 60%; */
     margin: 1rem;
     max-width: 100%;
-    /* background-color: red; */
 }
 
 .individual-notif {
@@ -31,17 +22,14 @@
     justify-content: space-between;
     padding: 1.1rem;
     margin: 0.5rem 1rem;
-    /* border: 1px solid red; */
 }
 
 
 .bell-notif.read {
-    /* background-color: yellow; */
     color: #5c5c6c;
 }
 
 .btn-container {
-    /* background: blue; */
     display: flex;
     max-height: 4rem;
     justify-content: center;
@@ -54,11 +42,7 @@
 
 .bell-container>.heading {
     display: flex;
-    /* background: red; */
     justify-content: space-between;
-    /* width: 100%; */
-    /* padding: 1rem; */
-    /* margin: 1rem 0; */
 }
 
 .title {
@@ -67,7 +51,6 @@
 
 .bell-container .control-btn {
     display: flex;
-    /* background: yellow; */
 }
 
 .modal-btn {
@@ -96,7 +79,6 @@
 
 .classic-btn {
     background: #1e1e26;
-    /* color: #828299; */
     color: rgb(154, 154, 154);
     border: none;
     padding: 8px;

@@ -16,13 +16,11 @@ const NotificationProvider = ({ children }) => {
         if (headlessService) {
             headlessService.fetchNotifications({
                 listener: ({ data, error, isError, isFetching, isLoading, status }) => {
-                    console.log({ data, error, isError, isFetching, isLoading, status });
                     // Handle the state of the fetching process and errors here.
                 },
                 onSuccess: (response) => {
 
                     // Handle the fetched notifications here.
-                    console.log("response from context", response);
                     setNotifications(response.data); // Store notifications in the state
                 },
                 page: pageNum, // page number to be fetched
@@ -40,11 +38,8 @@ const NotificationProvider = ({ children }) => {
 
         headlessService.initializeSession({
             listener: (res) => {
-                console.log("res in listner", res)
             },
             onSuccess: (session) => {
-                console.log("session", session);
-                // setInitializeHeadless(session);
                 headlessServiceRef.current = headlessService;
                 fetchNotifications();
 
@@ -69,7 +64,6 @@ const NotificationProvider = ({ children }) => {
             headlessService.markNotificationsAsRead({
                 messageId: messageIds,
                 listener: (result) => {
-                    console.log(result);
                 },
                 onError: (error) => {
                     console.error('Error marking notifications as read:', error);
@@ -80,21 +74,13 @@ const NotificationProvider = ({ children }) => {
     };
 
     const deleteNotification = (messageId) => {
-        // if (!Array.isArray(messageIds)) {
-        //     messageIds = [messageIds];
-        // }
         const headlessService = headlessServiceRef.current;
         if (headlessService) {
             headlessService.removeNotification({
                 messageId: messageId,
                 listener: function (result) {
-                    console.log('deleteeee', result);
-                    // setNotifications((prevNotifications) =>
-                    //     prevNotifications.filter((notification) => notification.id !== messageId)
-                    // );
                 },
                 onSuccess: function (message) {
-                    console.log(message);
                 },
                 onError: function (error) {
                     console.error(error);

@@ -10,14 +10,9 @@ const NotificationModal = () => {
     }
 
     const handleNotificationDelete = (notificationId) => {
-
-
         let newClass = document.getElementById(`${notificationId}`);
-        console.log(newClass);
-        // newClass.style.backgroundColor = 'red';
         newClass.style.display = 'none';
-
-        deleteNotification(notificationId)
+        deleteNotification(notificationId);
     }
 
     const handleMarkAllAsRead = () => {
@@ -36,7 +31,6 @@ const NotificationModal = () => {
     useEffect(() => {
         fetchNotifications();
     }, [pageNum, fetchNotifications])
-    console.log(pageNum);
     return (
         <div className='bell-container'>
             <div className='heading'>

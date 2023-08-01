@@ -34,8 +34,6 @@ const AppBar = () => {
         }
     }, [showModal])
 
-    console.log("modal State", showModal);
-
     return (
         <div>
             <div className='app-bar-container'>
