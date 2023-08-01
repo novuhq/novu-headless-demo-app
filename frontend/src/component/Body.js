@@ -17,7 +17,6 @@ const Body = () => {
     const onChangeHandler = e => {
         setDescription(e.target.value);
     }
-    // console.log('stateeeeeee', active);
     return (
         <div className='body-container'>
             <p>Enter notification text</p>
