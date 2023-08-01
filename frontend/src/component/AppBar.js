@@ -34,7 +34,7 @@ const AppBar = () => {
         }
     }, [showModal])
 
-console.log("modal State",showModal);
+    console.log("modal State", showModal);
 
     return (
         <div>
@@ -42,12 +42,12 @@ console.log("modal State",showModal);
                 <span onClick={handleShowNotification} className='bell-icon'>
                     <BsBell />
                     <div className={`${active ? `active` : ''}`}>
-                        <span className='dot'></span>
+                        <div className='dot'></div>
                     </div>
                 </span>
             </div>
             <div className={`modal-div ${showModal ? 'modal-show' : ''}`} ref={modalRef}>
-                {showModal && (<NotificationModal  />)}
+                {showModal && (<NotificationModal />)}
             </div>
         </div>
     );
